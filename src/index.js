@@ -10,30 +10,92 @@
 var Alexa = require('alexa-sdk');
 
 var states = {
-    STARTMODE: '_STARTMODE',                // Prompt the user to start or restart the game.
-    ASKMODE: '_ASKMODE',                    // Alexa is asking user the questions.
-    DESCRIPTIONMODE: '_DESCRIPTIONMODE'     // Alexa is describing the final choice and prompting to start again or quit
+    STARTMODE: '_STARTMODE', // Prompt the user to start or restart the game.
+    ASKMODE: '_ASKMODE', // Alexa is asking user the questions.
+    DESCRIPTIONMODE: '_DESCRIPTIONMODE' // Alexa is describing the final choice and prompting to start again or quit
 };
 
 // Questions
-var nodes = [{ "node": 1, "message": "Enter question here", "yes": 2, "no": 3 },
-             { "node": 2, "message": "Enter question here", "yes": 4, "no": 5 },
-             { "node": 3, "message": "Enter question here", "yes": 6, "no": 7 },
-             { "node": 4, "message": "Enter question here", "yes": 8, "no": 9 },
-             { "node": 5, "message": "Enter question here", "yes": 10, "no": 11 },
-             { "node": 6, "message": "Enter question here", "yes": 12, "no": 13 },
-             { "node": 7, "message": "Enter question here", "yes": 14, "no": 15 },
+var nodes = [{
+        "node": 1,
+        "message": "Which category would you like to learn about: sleep, nutrition, or development?",
+        "sleep": 2,
+        "nutrition": 3,
+        "development": 4,
+    },
+    // Sleep
+    {
+        "node": 2,
+        "message": "What would you like to know about sleep: safety, soothing, or environment?",
+        "safety": 5,
+        "soothing": 6,
+        "environment": 7
+    },
+    // Nutrition
+    {
+        "node": 3,
+        "message": "What would you like to know about nutrition: food, output, or formula?",
+        "food": 8,
+        "output": 9,
+        "formula": 10
+    },
+    // Development
+    {
+        "node": 4,
+        "message": "What would you like to know about development: communication or problem solving?",
+        "communication": 11,
+        "problem solving": 12
+    },
 
-
-// Answers & descriptions
-             { "node": 8, "message": "Enter answer here", "yes": 0, "no": 0, "description": "Enter description here." },
-             { "node": 9, "message": "Enter answer here", "yes": 0, "no": 0, "description": "Enter description here." },
-             { "node": 10, "message": "Enter answer here", "yes": 0, "no": 0, "description": "Enter description here." },
-             { "node": 11, "message": "Enter answer here", "yes": 0, "no": 0, "description": "Enter description here." },
-             { "node": 12, "message": "Enter answer here", "yes": 0, "no": 0, "description": "Enter description here." },
-             { "node": 13, "message": "Enter answer here", "yes": 0, "no": 0, "description": "Enter description here." },
-             { "node": 14, "message": "Enter answer here", "yes": 0, "no": 0, "description": "Enter description here." },
-             { "node": 15, "message": "Enter answer here", "yes": 0, "no": 0, "description": "Enter description here." },
+    // Answers & descriptions
+    // Sleep - safety
+    {
+        "node": 5,
+        "message": "This is header text for sleep - safety.",
+        "description": "This is the fuller description text for sleep - safety."
+    },
+    // Sleep - soothing
+    {
+        "node": 6,
+        "message": "This is header text for sleep - soothing.",
+        "description": "This is the fuller description text for sleep - soothing."
+    },
+    // Sleep - environment
+    {
+        "node": 7,
+        "message": "This is header text for sleep - environment.",
+        "description": "This is the fuller description text for sleep - environment."
+    },
+    // Nutrition - food
+    {
+        "node": 8,
+        "message": "This is header text for nutrition - food.",
+        "description": "This is the fuller description for nutrition - food."
+    },
+    // Nutrition - output
+    {
+        "node": 9,
+        "message": "This is header text for nutrition - output.",
+        "description": "This is the fuller description for nutrition - output."
+    },
+    // Nutrition - formula
+    {
+        "node": 10,
+        "message": "This is header text for nutrition - formula.",
+        "description": "This is the fuller description for nutrition - formula."
+    },
+    // Development - communication
+    {
+        "node": 11,
+        "message": "This is the header text for development - communication.",
+        "description": "This is the fuller description for development - communication."
+    },
+    // Development - problem solving
+    {
+        "node": 12,
+        "message": "This is the header text for development - problem-solving.",
+        "description": "This is the fuller description for development - problem-solving."
+    },
 ];
 
 
@@ -43,10 +105,10 @@ var visited = [nodes.length];
 // These are messages that Alexa says to the user during conversation
 
 // This is the intial welcome message
-var welcomeMessage = "Enter message here";
+var welcomeMessage = "Welceome to the Parent Educational Reference, would you like to start?";
 
 // This is the message that is repeated if the response to the initial welcome message is not heard
-var repeatWelcomeMessage = "Enter message here";
+var repeatWelcomeMessage = "Say yes to start, or no to end.";
 
 // this is the message that is repeated if Alexa does not hear/understand the reponse to the welcome message
 var promptToStartMessage = "Enter message here";
@@ -84,7 +146,7 @@ var START_NODE = 1;
 // --------------- Handlers -----------------------
 
 // Called when the session starts.
-exports.handler = function (event, context, callback) {
+exports.handler = function(event, context, callback) {
     var alexa = Alexa.handler(event, context);
     alexa.registerHandlers(newSessionHandler, startGameHandlers, askQuestionHandlers, descriptionHandlers);
     alexa.execute();
@@ -92,33 +154,33 @@ exports.handler = function (event, context, callback) {
 
 // set state to start up and  welcome the user
 var newSessionHandler = {
-  'LaunchRequest': function () {
-    this.handler.state = states.STARTMODE;
-    this.emit(':ask', welcomeMessage, repeatWelcomeMessage);
-  },'AMAZON.HelpIntent': function () {
-    this.handler.state = states.STARTMODE;
-    this.emit(':ask', helpMessage, helpMessage);
-  },
-  'Unhandled': function () {
-    this.handler.state = states.STARTMODE;
-    this.emit(':ask', promptToStartMessage, promptToStartMessage);
-  }
+    'LaunchRequest': function() {
+        this.handler.state = states.STARTMODE;
+        this.emit(':ask', welcomeMessage, repeatWelcomeMessage);
+    },
+    'AMAZON.HelpIntent': function() {
+        this.handler.state = states.STARTMODE;
+        this.emit(':ask', helpMessage, helpMessage);
+    },
+    'Unhandled': function() {
+        this.handler.state = states.STARTMODE;
+        this.emit(':ask', promptToStartMessage, promptToStartMessage);
+    }
 };
 
 // --------------- Functions that control the skill's behavior -----------------------
 
 // Called at the start of the game, picks and asks first question for the user
 var startGameHandlers = Alexa.CreateStateHandler(states.STARTMODE, {
-    'AMAZON.YesIntent': function () {
+    'AMAZON.YesIntent': function() {
 
         // ---------------------------------------------------------------
         // check to see if there are any loops in the node tree - this section can be removed in production code
         visited = [nodes.length];
         var loopFound = helper.debugFunction_walkNode(START_NODE);
-        if( loopFound === true)
-        {
+        if (loopFound === true) {
             // comment out this line if you know that there are no loops in your decision tree
-             this.emit(':tell', loopsDetectedMessage);
+            this.emit(':tell', loopsDetectedMessage);
         }
         // ---------------------------------------------------------------
 
@@ -134,23 +196,23 @@ var startGameHandlers = Alexa.CreateStateHandler(states.STARTMODE, {
         // ask the first question
         this.emit(':ask', message, message);
     },
-    'AMAZON.NoIntent': function () {
+    'AMAZON.NoIntent': function() {
         // Handle No intent.
         this.emit(':tell', goodbyeMessage);
     },
-    'AMAZON.StopIntent': function () {
+    'AMAZON.StopIntent': function() {
         this.emit(':tell', goodbyeMessage);
     },
-    'AMAZON.CancelIntent': function () {
+    'AMAZON.CancelIntent': function() {
         this.emit(':tell', goodbyeMessage);
     },
-    'AMAZON.StartOverIntent': function () {
-         this.emit(':ask', promptToStartMessage, promptToStartMessage);
+    'AMAZON.StartOverIntent': function() {
+        this.emit(':ask', promptToStartMessage, promptToStartMessage);
     },
-    'AMAZON.HelpIntent': function () {
+    'AMAZON.HelpIntent': function() {
         this.emit(':ask', helpMessage, helpMessage);
     },
-    'Unhandled': function () {
+    'Unhandled': function() {
         this.emit(':ask', promptToStartMessage, promptToStartMessage);
     }
 });
@@ -161,29 +223,29 @@ var startGameHandlers = Alexa.CreateStateHandler(states.STARTMODE, {
 // make a choice, inform the user and then ask if they want to play again
 var askQuestionHandlers = Alexa.CreateStateHandler(states.ASKMODE, {
 
-    'AMAZON.YesIntent': function () {
+    'AMAZON.YesIntent': function() {
         // Handle Yes intent.
-        helper.yesOrNo(this,'yes');
+        helper.yesOrNo(this, 'yes');
     },
-    'AMAZON.NoIntent': function () {
+    'AMAZON.NoIntent': function() {
         // Handle No intent.
-         helper.yesOrNo(this, 'no');
+        helper.yesOrNo(this, 'no');
     },
-    'AMAZON.HelpIntent': function () {
+    'AMAZON.HelpIntent': function() {
         this.emit(':ask', promptToSayYesNo, promptToSayYesNo);
     },
-    'AMAZON.StopIntent': function () {
+    'AMAZON.StopIntent': function() {
         this.emit(':tell', goodbyeMessage);
     },
-    'AMAZON.CancelIntent': function () {
+    'AMAZON.CancelIntent': function() {
         this.emit(':tell', goodbyeMessage);
     },
-    'AMAZON.StartOverIntent': function () {
+    'AMAZON.StartOverIntent': function() {
         // reset the game state to start mode
         this.handler.state = states.STARTMODE;
         this.emit(':ask', welcomeMessage, repeatWelcomeMessage);
     },
-    'Unhandled': function () {
+    'Unhandled': function() {
         this.emit(':ask', promptToSayYesNo, promptToSayYesNo);
     }
 });
@@ -191,36 +253,36 @@ var askQuestionHandlers = Alexa.CreateStateHandler(states.ASKMODE, {
 // user has heard the final choice and has been asked if they want to hear the description or to play again
 var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTIONMODE, {
 
- 'AMAZON.YesIntent': function () {
+    'AMAZON.YesIntent': function() {
         // Handle Yes intent.
         // reset the game state to start mode
         this.handler.state = states.STARTMODE;
         this.emit(':ask', welcomeMessage, repeatWelcomeMessage);
     },
-    'AMAZON.NoIntent': function () {
+    'AMAZON.NoIntent': function() {
         // Handle No intent.
         this.emit(':tell', goodbyeMessage);
     },
-    'AMAZON.HelpIntent': function () {
+    'AMAZON.HelpIntent': function() {
         this.emit(':ask', promptToSayYesNo, promptToSayYesNo);
     },
-    'AMAZON.StopIntent': function () {
+    'AMAZON.StopIntent': function() {
         this.emit(':tell', goodbyeMessage);
     },
-    'AMAZON.CancelIntent': function () {
+    'AMAZON.CancelIntent': function() {
         this.emit(':tell', goodbyeMessage);
     },
-    'AMAZON.StartOverIntent': function () {
+    'AMAZON.StartOverIntent': function() {
         // reset the game state to start mode
         this.handler.state = states.STARTMODE;
         this.emit(':ask', welcomeMessage, repeatWelcomeMessage);
     },
-    'DescriptionIntent': function () {
+    'DescriptionIntent': function() {
         //var reply = this.event.request.intent.slots.Description.value;
         //console.log('HEARD:' + reply);
         helper.giveDescription(this);
     },
-    'Unhandled': function () {
+    'Unhandled': function() {
         this.emit(':ask', promptToSayYesNo, promptToSayYesNo);
     }
 });
@@ -230,7 +292,7 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTIONMODE, {
 var helper = {
 
     // gives the user more information on their final choice
-    giveDescription: function (context) {
+    giveDescription: function(context) {
 
         // get the speech for the child node
         var description = helper.getDescriptionForNode(context.attributes.currentNode);
@@ -240,14 +302,13 @@ var helper = {
     },
 
     // logic to provide the responses to the yes or no responses to the main questions
-    yesOrNo: function (context, reply) {
+    yesOrNo: function(context, reply) {
 
         // this is a question node so we need to see if the user picked yes or no
         var nextNodeId = helper.getNextNode(context.attributes.currentNode, reply);
 
         // error in node data
-        if (nextNodeId == -1)
-        {
+        if (nextNodeId == -1) {
             context.handler.state = states.STARTMODE;
 
             // the current node was not found in the nodes array
@@ -275,7 +336,7 @@ var helper = {
     },
 
     // gets the description for the given node id
-    getDescriptionForNode: function (nodeId) {
+    getDescriptionForNode: function(nodeId) {
 
         for (var i = 0; i < nodes.length; i++) {
             if (nodes[i].node == nodeId) {
@@ -286,7 +347,7 @@ var helper = {
     },
 
     // returns the speech for the provided node id
-    getSpeechForNode: function (nodeId) {
+    getSpeechForNode: function(nodeId) {
 
         for (var i = 0; i < nodes.length; i++) {
             if (nodes[i].node == nodeId) {
@@ -297,7 +358,7 @@ var helper = {
     },
 
     // checks to see if this node is an choice node or a decision node
-    isAnswerNode: function (nodeId) {
+    isAnswerNode: function(nodeId) {
 
         for (var i = 0; i < nodes.length; i++) {
             if (nodes[i].node == nodeId) {
@@ -310,7 +371,7 @@ var helper = {
     },
 
     // gets the next node to traverse to based on the yes no response
-    getNextNode: function (nodeId, yesNo) {
+    getNextNode: function(nodeId, yesNo) {
         for (var i = 0; i < nodes.length; i++) {
             if (nodes[i].node == nodeId) {
                 if (yesNo == "yes") {
@@ -327,21 +388,20 @@ var helper = {
     // This method could be changed if you want to implement another type of checking mechanism
     // This should be run on debug builds only not production
     // returns false if node tree path does not contain any previously visited nodes, true if it finds one
-    debugFunction_walkNode: function (nodeId) {
+    debugFunction_walkNode: function(nodeId) {
 
         // console.log("Walking node: " + nodeId);
 
-        if( helper.isAnswerNode(nodeId) === true) {
+        if (helper.isAnswerNode(nodeId) === true) {
             // found an answer node - this path to this node does not contain a previously visted node
             // so we will return without recursing further
 
             // console.log("Answer node found");
-             return false;
+            return false;
         }
 
         // mark this question node as visited
-        if( helper.debugFunction_AddToVisited(nodeId) === false)
-        {
+        if (helper.debugFunction_AddToVisited(nodeId) === false) {
             // node was not added to the visited list as it already exists, this indicates a duplicate path in the tree
             return true;
         }
@@ -350,7 +410,7 @@ var helper = {
         var yesNode = helper.getNextNode(nodeId, "yes");
         var duplicatePathHit = helper.debugFunction_walkNode(yesNode);
 
-        if( duplicatePathHit === true){
+        if (duplicatePathHit === true) {
             return true;
         }
 
@@ -358,7 +418,7 @@ var helper = {
         var noNode = helper.getNextNode(nodeId, "no");
         duplicatePathHit = helper.debugFunction_walkNode(noNode);
 
-        if( duplicatePathHit === true){
+        if (duplicatePathHit === true) {
             return true;
         }
 
@@ -369,7 +429,7 @@ var helper = {
     // checks to see if this node has previously been visited
     // if it has it will be set to 1 in the array and we return false (exists)
     // if it hasnt we set it to 1 and return true (added)
-    debugFunction_AddToVisited: function (nodeId) {
+    debugFunction_AddToVisited: function(nodeId) {
 
         if (visited[nodeId] === 1) {
             // node previously added - duplicate exists
