@@ -15,14 +15,16 @@ var states = {
     DESCRIPTIONMODE: '_DESCRIPTIONMODE' // Alexa is describing the final choice and prompting to start again or quit
 };
 
-// Questions
+
 var nodes = [{
+// Initial question
         "node": 1,
         "message": "Which category would you like to learn about: sleep, nutrition, or development?",
         "sleep": 2,
         "nutrition": 3,
         "development": 4,
     },
+// Main categories
     // Sleep
     {
         "node": 2,
@@ -47,7 +49,7 @@ var nodes = [{
         "problem solving": 12
     },
 
-    // Answers & descriptions
+// Subcategories & descriptions
     // Sleep - safety
     {
         "node": 5,
@@ -111,22 +113,22 @@ var welcomeMessage = "Welceome to the Parent Educational Reference, would you li
 var repeatWelcomeMessage = "Say yes to start, or no to end.";
 
 // this is the message that is repeated if Alexa does not hear/understand the reponse to the welcome message
-var promptToStartMessage = "Enter message here";
+var promptToStartMessage = "Say yes to continue, or no to end.";
 
 // This is the prompt during the game when Alexa doesnt hear or understand a yes / no reply
-var promptToSayYesNo = "Enter message here";
+var promptToSayYesNo = "Please say that again.";
 
 // This is the response to the user after the final question when Alex decides on what group choice the user should be given
-var decisionMessage = "Enter message here";
+var decisionMessage = "Decision message.";
 
 // This is the prompt to ask the user if they would like to hear a short description of thier chosen profession or to play again
-var playAgainMessage = "Enter message here";
+var playAgainMessage = "Say 'tell me more' to hear a short description for this profession, or do you want to start over?";
 
 // this is the help message during the setup at the beginning of the game
-var helpMessage = "Enter message here";
+var helpMessage = "This is an educationl reference for parents.";
 
 // This is the goodbye message when the user has asked to quit the game
-var goodbyeMessage = "Enter message here";
+var goodbyeMessage = "Ok, see you next time!";
 
 var speechNotFoundMessage = "Could not find speech for node";
 
@@ -136,9 +138,9 @@ var descriptionNotFoundMessage = "Could not find description for node";
 
 var loopsDetectedMessage = "A potential loop was detected on the node tree, please fix before continuing";
 
-var utteranceTellMeMore = "Enter utterance here";
+var utteranceTellMeMore = "tell me more";
 
-var utterancePlayAgain = "Enter utterance here";
+var utterancePlayAgain = "play again";
 
 // the first node that we will use
 var START_NODE = 1;
@@ -360,14 +362,16 @@ var helper = {
     // checks to see if this node is an choice node or a decision node
     isAnswerNode: function(nodeId) {
 
-        for (var i = 0; i < nodes.length; i++) {
-            if (nodes[i].node == nodeId) {
-                if (nodes[i].yes === 0 && nodes[i].no === 0) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        // for (var i = 0; i < nodes.length; i++) {
+        //     if (nodes[i].node == nodeId) {
+        //         if (nodes[i].yes === 0 && nodes[i].no === 0) {
+        //             return true;
+        //         }
+        //     }
+        // }
+        // return false;
+
+        return nodeID >= 5;
     },
 
     // gets the next node to traverse to based on the yes no response
