@@ -54,49 +54,49 @@ var nodes = [{
     {
         "node": 5,
         "message": "This is header text for sleep - safety.",
-        "description": "This is the fuller description text for sleep - safety."
+        "description": "This is the fuller description text for the category sleep, subcategory safety. There will be a more in depth explanation of the subcategory here."
     },
     // Sleep - soothing
     {
         "node": 6,
         "message": "This is header text for sleep - soothing.",
-        "description": "This is the fuller description text for sleep - soothing."
+        "description": "This is the fuller description text for the category sleep, subcategory soothing. There will be a more in depth explanation of the subcategory here."
     },
     // Sleep - environment
     {
         "node": 7,
         "message": "This is header text for sleep - environment.",
-        "description": "This is the fuller description text for sleep - environment."
+        "description": "This is the fuller description text for the category sleep, subcategory environment. There will be a more in depth explanation of the subcategory here."
     },
     // Nutrition - food
     {
         "node": 8,
         "message": "This is header text for nutrition - food.",
-        "description": "This is the fuller description for nutrition - food."
+        "description": "This is the fuller description for the category nutrition, subcategory food. There will be a more in depth explanation of the subcategory here."
     },
     // Nutrition - output
     {
         "node": 9,
         "message": "This is header text for nutrition - output.",
-        "description": "This is the fuller description for nutrition - output."
+        "description": "This is the fuller description for the category nutrition, subcategory output. There will be a more in depth explanation of the subcategory here."
     },
     // Nutrition - formula
     {
         "node": 10,
         "message": "This is header text for nutrition - formula.",
-        "description": "This is the fuller description for nutrition - formula."
+        "description": "This is the fuller description for the category nutrition, subcategory formula. There will be a more in depth explanation of the subcategory here."
     },
     // Development - communication
     {
         "node": 11,
         "message": "This is the header text for development - communication.",
-        "description": "This is the fuller description for development - communication."
+        "description": "This is the fuller description for the category development, subcategory communication. There will be a more in depth explanation of the subcategory here."
     },
     // Development - problem solving
     {
         "node": 12,
         "message": "This is the header text for development - problem-solving.",
-        "description": "This is the fuller description for development - problem-solving."
+        "description": "This is the fuller description for the category development, subcategory problem-solving. There will be a more in depth explanation of the subcategory here."
     },
 ];
 
@@ -107,22 +107,22 @@ var visited = [nodes.length];
 // These are messages that Alexa says to the user during conversation
 
 // This is the intial welcome message
-var welcomeMessage = "Welceome to the Parent Educational Reference, would you like to start?";
+var welcomeMessage = "Welcome to the parent educational reference, would you like to begin?";
 
 // This is the message that is repeated if the response to the initial welcome message is not heard
-var repeatWelcomeMessage = "Say yes to start, or no to end.";
+var repeatWelcomeMessage = "Say yes to start from the beginning, or no to exit.";
 
 // this is the message that is repeated if Alexa does not hear/understand the reponse to the welcome message
-var promptToStartMessage = "Say yes to continue, or no to end.";
+var promptToStartMessage = "Say yes to continue, or no to exit.";
 
 // This is the prompt during the game when Alexa doesnt hear or understand a yes / no reply
 var promptToSayYesNo = "Please say that again.";
 
 // This is the response to the user after the final question when Alex decides on what group choice the user should be given
-var decisionMessage = "Decision message.";
+var decisionMessage = "Decision message";
 
 // This is the prompt to ask the user if they would like to hear a short description of thier chosen profession or to play again
-var playAgainMessage = "Say 'tell me more' to hear a short description for this profession, or do you want to start over?";
+var playAgainMessage = "Say 'tell me more' to hear a short description for this category, or do you want to start over?";
 
 // this is the help message during the setup at the beginning of the game
 var helpMessage = "This is an educationl reference for parents.";
@@ -178,12 +178,12 @@ var startGameHandlers = Alexa.CreateStateHandler(states.STARTMODE, {
 
         // ---------------------------------------------------------------
         // check to see if there are any loops in the node tree - this section can be removed in production code
-        visited = [nodes.length];
-        var loopFound = helper.debugFunction_walkNode(START_NODE);
-        if (loopFound === true) {
-            // comment out this line if you know that there are no loops in your decision tree
-            this.emit(':tell', loopsDetectedMessage);
-        }
+        // visited = [nodes.length];
+        // var loopFound = helper.debugFunction_walkNode(START_NODE);
+        // if (loopFound === true) {
+        //     // comment out this line if you know that there are no loops in your decision tree
+        //     this.emit(':tell', loopsDetectedMessage);
+        // }
         // ---------------------------------------------------------------
 
         // set state to asking questions
@@ -225,14 +225,21 @@ var startGameHandlers = Alexa.CreateStateHandler(states.STARTMODE, {
 // make a choice, inform the user and then ask if they want to play again
 var askQuestionHandlers = Alexa.CreateStateHandler(states.ASKMODE, {
 
-    'AMAZON.YesIntent': function() {
-        // Handle Yes intent.
-        helper.yesOrNo(this, 'yes');
+    'CategoryIntent': function() {
+        // Handle category answer
+        var category = this.event.request.intent.slots.Category.value;
+        helper.yesOrNo(this, category);
     },
-    'AMAZON.NoIntent': function() {
-        // Handle No intent.
-        helper.yesOrNo(this, 'no');
-    },
+
+    // 'AMAZON.YesIntent': function() {
+    //     // Handle Yes intent.
+    //     helper.yesOrNo(this, 'yes');
+    // },
+    // 'AMAZON.NoIntent': function() {
+    //     // Handle No intent.
+    //     helper.yesOrNo(this, 'no');
+    // },
+
     'AMAZON.HelpIntent': function() {
         this.emit(':ask', promptToSayYesNo, promptToSayYesNo);
     },
@@ -328,7 +335,8 @@ var helper = {
             context.handler.state = states.DESCRIPTIONMODE;
 
             // append the play again prompt to the decision and speak it
-            message = decisionMessage + ' ' + message + ' ,' + playAgainMessage;
+            // message = decisionMessage + ' ' + message + ' ,' + playAgainMessage;
+            message = message + ' ,' + playAgainMessage;
         }
 
         // set the current node to next node we want to go to
@@ -371,17 +379,18 @@ var helper = {
         // }
         // return false;
 
-        return nodeID >= 5;
+        return nodeId >= 5;
     },
 
     // gets the next node to traverse to based on the yes no response
     getNextNode: function(nodeId, yesNo) {
         for (var i = 0; i < nodes.length; i++) {
             if (nodes[i].node == nodeId) {
-                if (yesNo == "yes") {
-                    return nodes[i].yes;
-                }
-                return nodes[i].no;
+                // if (yesNo == "yes") {
+                //     return nodes[i].yes;
+                // }
+                // return nodes[i].no;
+                return nodes[i][yesNo];
             }
         }
         // error condition, didnt find a matching node id. Cause will be a yes / no entry in the array but with no corrosponding array entry
