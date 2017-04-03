@@ -19,7 +19,7 @@ var states = {
 var nodes = [{
 // Initial question
         "node": "root",
-        "parent": null,
+        "parent": "root",
         "message": "Would you like to learn about sleep, nutrition, or development?",
         "sleep": "sleep",
         "nutrition": "nutrition",
@@ -242,6 +242,9 @@ var askQuestionHandlers = Alexa.CreateStateHandler(states.ASKMODE, {
         var category = this.event.request.intent.slots.Category.value;
         helper.yesOrNo(this, category);
     },
+    'GoBackIntent': function() {
+        helper.yesOrNo(this, 'parent');
+    },
 
     // 'AMAZON.YesIntent': function() {
     //     // Handle Yes intent.
@@ -273,6 +276,11 @@ var askQuestionHandlers = Alexa.CreateStateHandler(states.ASKMODE, {
 
 // user has heard the final choice and has been asked if they want to hear the description or to play again
 var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTIONMODE, {
+
+    'GoBackIntent': function() {
+        this.handler.state = states.ASKMODE;
+        helper.yesOrNo(this, 'parent');
+    },
 
     'AMAZON.YesIntent': function() {
         // Handle Yes intent.
