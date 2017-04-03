@@ -12,3 +12,7 @@ AMAZON.StartOverIntent restart
 AMAZON.StartOverIntent start again
 AMAZON.StartOverIntent play again
 CategoryIntent {Category}
+JumpToIntent jump to {Category}
+GoBackIntent go back
+GoBackIntent back
+GoBackIntent previous

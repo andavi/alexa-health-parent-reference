@@ -18,83 +18,83 @@ var states = {
 
 var nodes = [{
 // Initial question
-        "node": 1,
+        "node": "root",
         "message": "Which category would you like to learn about: sleep, nutrition, or development?",
-        "sleep": 2,
-        "nutrition": 3,
-        "development": 4,
+        "sleep": "sleep",
+        "nutrition": "nutrition",
+        "development": "development"
     },
 // Main categories
     // Sleep
     {
-        "node": 2,
+        "node": "sleep",
         "message": "What would you like to know about sleep: safety, soothing, or environment?",
-        "safety": 5,
-        "soothing": 6,
-        "environment": 7
+        "safety": "sleep safety",
+        "soothing": "sleep soothing",
+        "environment": "sleep environment"
     },
     // Nutrition
     {
-        "node": 3,
+        "node": "nutrition",
         "message": "What would you like to know about nutrition: food, output, or formula?",
-        "food": 8,
-        "output": 9,
-        "formula": 10
+        "food": "nutrition food",
+        "output": "nutrition output",
+        "formula": "nutrition formula"
     },
     // Development
     {
-        "node": 4,
+        "node": "development",
         "message": "What would you like to know about development: communication or problem solving?",
-        "communication": 11,
-        "problem solving": 12
+        "communication": "development communication",
+        "problem solving": "develoopment problem solving"
     },
 
 // Subcategories & descriptions
     // Sleep - safety
     {
-        "node": 5,
+        "node": "sleep safety",
         "message": "This is header text for sleep - safety.",
         "description": "This is the fuller description text for the category sleep, subcategory safety. There will be a more in depth explanation of the subcategory here."
     },
     // Sleep - soothing
     {
-        "node": 6,
+        "node": "sleep soothing",
         "message": "This is header text for sleep - soothing.",
         "description": "This is the fuller description text for the category sleep, subcategory soothing. There will be a more in depth explanation of the subcategory here."
     },
     // Sleep - environment
     {
-        "node": 7,
+        "node": "sleep environment",
         "message": "This is header text for sleep - environment.",
         "description": "This is the fuller description text for the category sleep, subcategory environment. There will be a more in depth explanation of the subcategory here."
     },
     // Nutrition - food
     {
-        "node": 8,
+        "node": "nutrition food",
         "message": "This is header text for nutrition - food.",
         "description": "This is the fuller description for the category nutrition, subcategory food. There will be a more in depth explanation of the subcategory here."
     },
     // Nutrition - output
     {
-        "node": 9,
+        "node": "nutrition output",
         "message": "This is header text for nutrition - output.",
         "description": "This is the fuller description for the category nutrition, subcategory output. There will be a more in depth explanation of the subcategory here."
     },
     // Nutrition - formula
     {
-        "node": 10,
+        "node": "nutrition formula",
         "message": "This is header text for nutrition - formula.",
         "description": "This is the fuller description for the category nutrition, subcategory formula. There will be a more in depth explanation of the subcategory here."
     },
     // Development - communication
     {
-        "node": 11,
+        "node": "development communication",
         "message": "This is the header text for development - communication.",
         "description": "This is the fuller description for the category development, subcategory communication. There will be a more in depth explanation of the subcategory here."
     },
     // Development - problem solving
     {
-        "node": 12,
+        "node": "development problem solving",
         "message": "This is the header text for development - problem-solving.",
         "description": "This is the fuller description for the category development, subcategory problem-solving. There will be a more in depth explanation of the subcategory here."
     },
@@ -143,7 +143,7 @@ var utteranceTellMeMore = "tell me more";
 var utterancePlayAgain = "play again";
 
 // the first node that we will use
-var START_NODE = 1;
+var START_NODE = "root";
 
 // --------------- Handlers -----------------------
 
@@ -370,16 +370,17 @@ var helper = {
     // checks to see if this node is an choice node or a decision node
     isAnswerNode: function(nodeId) {
 
-        // for (var i = 0; i < nodes.length; i++) {
-        //     if (nodes[i].node == nodeId) {
-        //         if (nodes[i].yes === 0 && nodes[i].no === 0) {
-        //             return true;
-        //         }
-        //     }
-        // }
-        // return false;
+        for (var i = 0; i < nodes.length; i++) {
+            if (nodes[i].node == nodeId) {
+                // if (nodes[i].yes === 0 && nodes[i].no === 0) {
+                //     return true;
+                // }
+                return nodes[i].node.description != undefined;
+            }
+        }
+        return false;
 
-        return nodeId >= 5;
+        // return nodeId >= 5;
     },
 
     // gets the next node to traverse to based on the yes no response

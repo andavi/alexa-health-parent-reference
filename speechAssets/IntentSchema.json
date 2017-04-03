@@ -25,9 +25,18 @@
         }]
     }, {
         "intent": "CategoryIntent",
-		"slots": [{
-			"name": "Category",
-			"type": "categoryType"
-			}]
+        "slots": [{
+            "name": "Category",
+            "type": "categoryType"
+        }]
+    }, {
+        "intent": "JumpToIntent",
+        "slots": [{
+            "name": "Category",
+            "type": "categoryType"
+        }]
+    }, {
+        "intent": "GoBackIntent",
+        "slots": []
     }]
 }
