@@ -245,6 +245,9 @@ var askQuestionHandlers = Alexa.CreateStateHandler(states.ASKMODE, {
     'GoBackIntent': function() {
         helper.yesOrNo(this, 'parent');
     },
+    'JumpToIntent': function() {
+        helper.jumpTo(this);
+    },
 
     // 'AMAZON.YesIntent': function() {
     //     // Handle Yes intent.
@@ -280,6 +283,9 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTIONMODE, {
     'GoBackIntent': function() {
         this.handler.state = states.ASKMODE;
         helper.yesOrNo(this, 'parent');
+    },
+    'JumpToIntent': function() {
+        helper.jumpTo(this);
     },
 
     'AMAZON.YesIntent': function() {
@@ -357,6 +363,41 @@ var helper = {
             // append the play again prompt to the decision and speak it
             // message = decisionMessage + ' ' + message + ' ,' + playAgainMessage;
             message = message + ' ,' + playAgainMessage;
+        }
+
+        // set the current node to next node we want to go to
+        context.attributes.currentNode = nextNodeId;
+
+        context.emit(':ask', message, message);
+    },
+
+    // jump to logic
+    jumpTo: function(context) {
+        var nextNodeId = context.event.request.intent.slots.Category.value;
+
+        // error in node data
+        if (nextNodeId == -1) {
+            context.handler.state = states.STARTMODE;
+
+            // the current node was not found in the nodes array
+            // this is due to the current node in the nodes array having a yes / no node id for a node that does not exist
+            context.emit(':tell', nodeNotFoundMessage, nodeNotFoundMessage);
+        }
+
+        // get the speech for the child node
+        var message = helper.getSpeechForNode(nextNodeId);
+
+        // have we made a decision
+        if (helper.isAnswerNode(nextNodeId) === true) {
+
+            // set the game state to description mode
+            context.handler.state = states.DESCRIPTIONMODE;
+
+            // append the play again prompt to the decision and speak it
+            // message = decisionMessage + ' ' + message + ' ,' + playAgainMessage;
+            message = message + ' ,' + playAgainMessage;
+        } else {
+            context.handler.state = states.ASKMODE;
         }
 
         // set the current node to next node we want to go to
