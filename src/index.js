@@ -19,7 +19,8 @@ var states = {
 var nodes = [{
 // Initial question
         "node": "root",
-        "message": "Which category would you like to learn about: sleep, nutrition, or development?",
+        "parent": null,
+        "message": "Would you like to learn about sleep, nutrition, or development?",
         "sleep": "sleep",
         "nutrition": "nutrition",
         "development": "development"
@@ -28,7 +29,8 @@ var nodes = [{
     // Sleep
     {
         "node": "sleep",
-        "message": "What would you like to know about sleep: safety, soothing, or environment?",
+        "parent": "root",
+        "message": "In sleep: safety, soothing, or environment?",
         "safety": "sleep safety",
         "soothing": "sleep soothing",
         "environment": "sleep environment"
@@ -36,7 +38,8 @@ var nodes = [{
     // Nutrition
     {
         "node": "nutrition",
-        "message": "What would you like to know about nutrition: food, output, or formula?",
+        "parent": "root",
+        "message": "In nutrition: food, output, or formula?",
         "food": "nutrition food",
         "output": "nutrition output",
         "formula": "nutrition formula"
@@ -44,57 +47,66 @@ var nodes = [{
     // Development
     {
         "node": "development",
-        "message": "What would you like to know about development: communication or problem solving?",
+        "parent": "root",
+        "message": "In development: communication or problem solving?",
         "communication": "development communication",
-        "problem solving": "develoopment problem solving"
+        "problem solving": "development problem solving"
     },
 
 // Subcategories & descriptions
     // Sleep - safety
     {
         "node": "sleep safety",
+        "parent": "sleep",
         "message": "This is header text for sleep - safety.",
         "description": "This is the fuller description text for the category sleep, subcategory safety. There will be a more in depth explanation of the subcategory here."
     },
     // Sleep - soothing
     {
         "node": "sleep soothing",
+        "parent": "sleep",
         "message": "This is header text for sleep - soothing.",
         "description": "This is the fuller description text for the category sleep, subcategory soothing. There will be a more in depth explanation of the subcategory here."
     },
     // Sleep - environment
     {
         "node": "sleep environment",
+        "parent": "sleep",
         "message": "This is header text for sleep - environment.",
         "description": "This is the fuller description text for the category sleep, subcategory environment. There will be a more in depth explanation of the subcategory here."
     },
     // Nutrition - food
     {
         "node": "nutrition food",
+        "parent": "nutrition",
         "message": "This is header text for nutrition - food.",
         "description": "This is the fuller description for the category nutrition, subcategory food. There will be a more in depth explanation of the subcategory here."
     },
     // Nutrition - output
     {
         "node": "nutrition output",
+        "parent": "nutrition",
         "message": "This is header text for nutrition - output.",
         "description": "This is the fuller description for the category nutrition, subcategory output. There will be a more in depth explanation of the subcategory here."
     },
     // Nutrition - formula
     {
         "node": "nutrition formula",
+        "parent": "nutrition",
         "message": "This is header text for nutrition - formula.",
         "description": "This is the fuller description for the category nutrition, subcategory formula. There will be a more in depth explanation of the subcategory here."
     },
     // Development - communication
     {
         "node": "development communication",
+        "parent": "development",
         "message": "This is the header text for development - communication.",
         "description": "This is the fuller description for the category development, subcategory communication. There will be a more in depth explanation of the subcategory here."
     },
     // Development - problem solving
     {
         "node": "development problem solving",
+        "parent": "development",
         "message": "This is the header text for development - problem-solving.",
         "description": "This is the fuller description for the category development, subcategory problem-solving. There will be a more in depth explanation of the subcategory here."
     },
@@ -107,7 +119,7 @@ var visited = [nodes.length];
 // These are messages that Alexa says to the user during conversation
 
 // This is the intial welcome message
-var welcomeMessage = "Welcome to the parent educational reference, would you like to begin?";
+var welcomeMessage = "Welcome to the parent educational reference, ready?";
 
 // This is the message that is repeated if the response to the initial welcome message is not heard
 var repeatWelcomeMessage = "Say yes to start from the beginning, or no to exit.";
@@ -122,7 +134,7 @@ var promptToSayYesNo = "Please say that again.";
 var decisionMessage = "Decision message";
 
 // This is the prompt to ask the user if they would like to hear a short description of thier chosen profession or to play again
-var playAgainMessage = "Say 'tell me more' to hear a short description for this category, or do you want to start over?";
+var playAgainMessage = "Say 'tell me more' to learn more, or do you want to start over?";
 
 // this is the help message during the setup at the beginning of the game
 var helpMessage = "This is an educationl reference for parents.";
@@ -375,7 +387,7 @@ var helper = {
                 // if (nodes[i].yes === 0 && nodes[i].no === 0) {
                 //     return true;
                 // }
-                return nodes[i].node.description != undefined;
+                return nodes[i].description != undefined;
             }
         }
         return false;
