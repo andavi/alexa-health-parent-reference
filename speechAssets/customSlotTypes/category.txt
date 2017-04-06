@@ -1,8 +1,9 @@
+beginning
 sleep
 nutrition
 development
 safety
-soothing
+positioning
 environment
 food
 output
