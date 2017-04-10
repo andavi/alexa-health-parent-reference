@@ -15,9 +15,8 @@ var states = {
     DESCRIPTIONMODE: '_DESCRIPTIONMODE' // Alexa is describing the final choice and prompting to start again or quit
 };
 
-
+// this is the datastructure that contains the educatinal content
 var nodes = require('./tree');
-console.log(nodes.length);
 
 // this is used for keep track of visted nodes when we test for loops in the tree
 var visited = [nodes.length];
@@ -40,7 +39,7 @@ var promptToSayYesNo = "Please say that again.";
 var decisionMessage = "Decision message";
 
 // This is the prompt to ask the user if they would like to hear a short description of thier chosen profession or to play again
-var playAgainMessage = "Say 'tell me more' to learn more, or do you want to start over?";
+var playAgainMessage = "Say 'tell me more' to hear more";
 
 // this is the help message during the setup at the beginning of the game
 var helpMessage = "This is an educationl reference for parents.";
@@ -159,10 +158,11 @@ var askQuestionHandlers = Alexa.CreateStateHandler(states.ASKMODE, {
     //     // Handle Yes intent.
     //     helper.yesOrNo(this, 'yes');
     // },
-    // 'AMAZON.NoIntent': function() {
-    //     // Handle No intent.
-    //     helper.yesOrNo(this, 'no');
-    // },
+    'AMAZON.NoIntent': function() {
+        // Handle No intent.
+        // helper.yesOrNo(this, 'no');
+        this.emit(':tell', goodbyeMessage);
+    },
 
     'AMAZON.HelpIntent': function() {
         this.emit(':ask', promptToSayYesNo, promptToSayYesNo);
@@ -199,6 +199,7 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTIONMODE, {
         // reset the game state to start mode
         this.handler.state = states.STARTMODE;
         this.emit(':ask', welcomeMessage, repeatWelcomeMessage);
+        // helper.giveDescription(this);
     },
     'AMAZON.NoIntent': function() {
         // Handle No intent.
