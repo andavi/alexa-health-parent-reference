@@ -13,6 +13,7 @@ AMAZON.StartOverIntent start again
 AMAZON.StartOverIntent play again
 CategoryIntent {Category}
 JumpToIntent jump to {Category}
+JumpToIntent tell me about {Category}
 GoBackIntent go back
 GoBackIntent back
 GoBackIntent previous
