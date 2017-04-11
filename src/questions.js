@@ -257,8 +257,8 @@ module.exports = {
     "QUESTIONS_EN_US" : [
         {
             "What is recommended as a substitute to breastmilk?": [
-                "iron fortified",
-                "soy",
+                "iron fortified forumula",
+                "soy milk",
                 "fermented mongolian horse milk",
                 "free range, grass-fed goat's milk"
             ]
@@ -267,7 +267,7 @@ module.exports = {
             "When is the best time for tummy time?": [
                 "When babies are awake and being watched",
                 "It's always tummy time",
-                "Putting babies on their tummy encourages an unhealthy fascination with the ground",
+                "Never. Putting babies on their tummy encourages an unhealthy fascination with the ground that could last for years",
                 "When you have to leave the baby alone for awhile",
             ]
         },
@@ -275,20 +275,20 @@ module.exports = {
             "How should wake up a deeply sleeping baby?": [
                 "Take gradual steps starting with gentle talking and touching, progressing to changing clothes and diaper as needed",
                 "Set an alarm when you need the baby to be awake",
-                "Submerge its feet in cool water",
-                "Allow the smell of freshly baked cinnamon buns to waft into the room"
+                "Submerge their feet in cool water",
+                "Allow the smell of freshly brewed coffee to waft into the baby's room as to ignite a pavlovian response"
             ]
         },
         {
             "Should twins be roomed together or in seperate sleeping quarters?": [
                 "It is perfectly fine to have babies share a room.",
-                "It is not recommended since they will probably get bored of each other",
-                "Only if they are fraternal twins. Identical twins will forget which one they are",
-                "Only as long as there are strict ground rules in place prohibiting them from creating their own unique language"
+                "It is not recommended to room twins together since they will both wake up anytime one of them cries",
+                "Only if they are fraternal twins. Identical twins that spend too much time together will have trouble understanding why there are two copies of them in the world",
+                "It is not recommended to room twins together because their jibber jabber can develop into a language as undecipherable as Navajo code talk"
             ]
         },
         {
-            "Which statement about cribs is not true?": [
+            "Which statement about cribs is NOT true?": [
                 "Don't worry about crib size because babies don't grow fast enough for that to matter",
                 "Make sure your baby sleeps on a firm surface without any sort of cushion or pillow",
                 "Make sure the bottom of the cradle or bassinet is well supported to prevent its collapse",
@@ -297,7 +297,7 @@ module.exports = {
         },
         {
             "Which is true about a baby's sleeping position?": [
-                "All of the options are true",
+                "All of the listed options are true",
                 "Healthy babies are safest when sleeping on their backs at nighttime and during naps",
                 "Side sleeping is not as safe as back sleeping and is not advised",
                 "Keep soft objects, loose bedding, or any objects that could increase the risk of entrapment, suffocation, or strangulation from the baby's sleep area",
@@ -305,11 +305,11 @@ module.exports = {
             ]
         },
         {
-            "What is recommended for bathing instead of bath seats?": [
-                "Because bath seats are capable of tipping over, the US Consumer Product Safety Commission recommends a hard plastic child bathtub.",
-                "A well-fitted US Coast Guard approved flotation device",
-                "Using a hose to bathe your child instead of a bathtub",
-                "Harnessing the purifying power of a high velocity air stream to cleanse your child"
+            "Because bath seats are capable of tipping over, what does the US Consumer Product Safety Commission recommend for bathing instead?": [
+                "A hard plastic child bathtub",
+                "A US Coast Guard approved flotation device",
+                "A garden hose with a multiple setting spray nozzle",
+                "A high velocity air stream"
             ]
         }
     ],
