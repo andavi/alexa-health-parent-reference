@@ -1,5 +1,5 @@
 module.exports = [{
-// Initial question
+        // Initial question
         "node": "beginning",
         "parent": "beginning",
         "message": "Would you like to learn about sleep, nutrition, or development?",
@@ -7,7 +7,7 @@ module.exports = [{
         "nutrition": "nutrition",
         "development": "development"
     },
-// Main categories
+    // Main categories
     // Sleep
     {
         "node": "sleep",
@@ -35,7 +35,7 @@ module.exports = [{
         "problem solving": "development problem solving"
     },
 
-// Subcategories & descriptions
+    // Subcategories & descriptions
     // Sleep - safety
     {
         "node": "sleep safety",

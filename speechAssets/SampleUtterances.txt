@@ -4,6 +4,7 @@ DescriptionIntent {Description}
 DescriptionIntent can you {Description}
 DescriptionIntent tell me about that
 DescriptionIntent description please
+
 AMAZON.StopIntent stop
 AMAZON.StopIntent off
 AMAZON.StopIntent shut up
@@ -11,8 +12,35 @@ AMAZON.StartOverIntent start over
 AMAZON.StartOverIntent restart
 AMAZON.StartOverIntent start again
 AMAZON.StartOverIntent play again
+
+PlayGameIntent play game
+PlayGameIntent game
+PlayGameIntent play
+ExploratoryIntent explore topics
+ExploratoryIntent explore
+
 CategoryIntent {Category}
 JumpToIntent jump to {Category}
 JumpToIntent tell me about {Category}
 GoBackIntent go back
 GoBackIntent back
+
+AnswerIntent the answer is {Answer}
+AnswerIntent my answer is {Answer}
+AnswerIntent is it {Answer}
+AnswerIntent {Answer} is my answer
+AnswerIntent {Answer}
+
+AMAZON.StartOverIntent start game
+AMAZON.StartOverIntent new game
+AMAZON.StartOverIntent start
+AMAZON.StartOverIntent start new game
+
+DontKnowIntent i don't know
+DontKnowIntent don't know
+DontKnowIntent skip
+DontKnowIntent i don't know that
+DontKnowIntent who knows
+DontKnowIntent i don't know this question
+DontKnowIntent i don't know that one
+DontKnowIntent dunno

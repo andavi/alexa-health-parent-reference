@@ -52,6 +52,9 @@ var utterancePlayAgain = "play again";
 
 // Called at the start of the game, picks and asks first question for the user
 var startGameHandlers = Alexa.CreateStateHandler(states.STARTMODE, {
+    // 'startExploring': function() {
+    //
+    // }
     'AMAZON.YesIntent': function() {
 
         // set state to asking questions
