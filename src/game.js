@@ -143,7 +143,7 @@ var startStateHandlers = Alexa.CreateStateHandler(GAME_STATES.START, {
 
 
 //query for last score
-        var params = {
+    var params = {
     TableName : "game_score",
     KeyConditionExpression: "#username = :username",
     ExpressionAttributeNames:{
@@ -329,24 +329,53 @@ function handleUserGuess(userGaveUp) {
         speechOutput += speechOutputAnalysis + this.t("SCORE_IS_MESSAGE", currentScore.toString()) + repromptText;
 
 
-
-        var params = {
-          Item: {
-            username:"alexa",
-            score: currentScore
+//update the existing item, create a new one if it doesn't exist
+        params = {
+          TableName: "game_score",
+          Key:{
+            "username": "alexa"
           },
-
-          TableName: 'game_score'
+          UpdateExpression:"set score = :sc",
+          ExpressionAttributeValues:{
+            ":sc":currentScore
+          },
+          ReturnValues:"UPDATED_NEW"
         };
-
-        docClient.put(params, function(err,data){
-          if(err){
-            callback(err, null);
-          }else{
-            callback(null, data);
-          }
+          /*docClient.query(params, function(err, data) {
+            if (err) {
+                console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
+            } else {
+                console.log("Query succeeded.");
+                data.Items.forEach(function(item) {
+                    console.log(" -", item.username + ": " + item.score);
+                });
+            }
         });
+        */
+        console.log("Updating...");
+        docClient.update(params, function(err, data) {
+            if (err) {
+              params = {
+                Item: {
+                  username:"alexa",
+                  score: currentScore
+                },
 
+                TableName: 'game_score'
+              };
+
+              docClient.put(params, function(err,data){
+                if(err){
+                  callback(err, null);
+                }else{
+                  callback(null, data);
+                }
+              });
+
+            } else {
+                console.log("UpdateItem succeeded:", JSON.stringify(data, null, 2));
+            }
+        });
 
 
         Object.assign(this.attributes, {
