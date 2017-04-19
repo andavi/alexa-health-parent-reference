@@ -2,10 +2,11 @@ module.exports = [{
         // Initial question
         "node": "beginning",
         "parent": "beginning",
-        "message": "Would you like to learn about sleep, nutrition, or development?",
+        "message": "Would you like to learn about sleep, feeding, or development?",
         "sleep": "sleep",
-        "nutrition": "nutrition",
-        "development": "development"
+        "feeding": "feeding",
+        "development": "development",
+        "hygienne": "hygienee"
     },
     // Main categories
     // Sleep
@@ -17,22 +18,34 @@ module.exports = [{
         "positioning": "sleep positioning",
         "environment": "sleep environment"
     },
-    // Nutrition
+    // Feeding
     {
-        "node": "nutrition",
+        "node": "feeding",
         "parent": "beginning",
-        "message": "In nutrition: food, output, or formula?",
-        "food": "nutrition food",
-        "output": "nutrition output",
-        "formula": "nutrition formula"
+        "message": "In feeding: food, output, or formula?",
+        "food": "food",
+        "output": "output",
+        "formula": "formula"
     },
     // Development
     {
         "node": "development",
         "parent": "beginning",
-        "message": "In development: communication or problem solving?",
-        "communication": "development communication",
-        "problem solving": "development problem solving"
+        "message": "In development: communication, problem solving, or tummy time?",
+        "communication": "communication",
+        "problem solving": "problem solving",
+        "tummy time": "tummy time"
+    },
+    // Hygiene
+    {
+        "node": "hygiene",
+        "message": "In hygiene, cradle cap, tooth decay, or teething?"
+        "parent": "beginning",
+        "cradle cap": "cradle cap",
+        "tooth decay": "tooth decay",
+        "teething": "teething",
+        "fluoride": "fluoride",
+        "first dental visit": "first dental visit"
     },
 
     // Subcategories & descriptions
@@ -57,39 +70,84 @@ module.exports = [{
         "message": "Buying a safe crib or bassinet is almost as important as making sure your baby sleeps the right way. Always keep in mind that babies grow fast and a cradle that’s sturdy enough for a 1-month-old may be outgrown by the next month.",
         "description": "Make sure your baby sleeps on a firm surface without any sort of cushion or pillow. Additionally, make sure the bottom of the cradle or bassinet is well supported to prevent its collapse. The cradle or bassinet should also have a wide base so it won’t tip over even if someone bumps it; if it has folding legs, make certain that they’re locked straight whenever it is being used. We suggest you place your crib well away from any windows and no less than an arm’s reach away from any nearby dressers or table-tops. Knowing that it won’t be long before anything and everything within reach will be fair game, we also recommend limiting your over-the-crib wall decorations to painted walls and wallpaper. As far as crib toys go, keep them out of the crib for the first few weeks. As you baby gets older they will enjoy playing with mirrors or toys with parts they can play with (such as spinners, rattles, and music), but make sure nothing you give them has a choking hazard."
     },
-    // Nutrition - food
+    // feeding - food
     {
-        "node": "nutrition food",
-        "parent": "nutrition",
-        "message": "This is header text for nutrition - food.",
-        "description": "This is the fuller description for the category nutrition, subcategory food. There will be a more in depth explanation of the subcategory here."
+        "node": "food",
+        "parent": "feeding",
+        "message": "This is header text for feeding - food.",
+        "description": "This is the fuller description for the category feeding, subcategory food. There will be a more in depth explanation of the subcategory here."
     },
-    // Nutrition - output
+    // feeding - output
     {
-        "node": "nutrition output",
-        "parent": "nutrition",
-        "message": "This is header text for nutrition - output.",
-        "description": "This is the fuller description for the category nutrition, subcategory output. There will be a more in depth explanation of the subcategory here."
+        "node": "output",
+        "parent": "feeding",
+        "message": "This is header text for feeding - output.",
+        "description": "This is the fuller description for the category feeding, subcategory output. There will be a more in depth explanation of the subcategory here."
     },
-    // Nutrition - formula
+    // feeding - formula
     {
-        "node": "nutrition formula",
-        "parent": "nutrition",
-        "message": "This is header text for nutrition - formula.",
-        "description": "This is the fuller description for the category nutrition, subcategory formula. There will be a more in depth explanation of the subcategory here."
+        "node": "formula",
+        "parent": "feeding",
+        "message": "This is header text for feeding - formula.",
+        "description": "This is the fuller description for the category feeding, subcategory formula. There will be a more in depth explanation of the subcategory here."
     },
     // Development - communication
     {
-        "node": "development communication",
+        "node": "communication",
         "parent": "development",
         "message": "This is the header text for development - communication.",
         "description": "This is the fuller description for the category development, subcategory communication. There will be a more in depth explanation of the subcategory here."
     },
     // Development - problem solving
     {
-        "node": "development problem solving",
+        "node": "problem solving",
         "parent": "development",
         "message": "This is the header text for development - problem-solving.",
         "description": "This is the fuller description for the category development, subcategory problem-solving. There will be a more in depth explanation of the subcategory here."
     },
+    // Development - tummy time
+    {
+        "node": "tummy time",
+        "parent": "development",
+        "message": "Tummy time is for babies who are awake and being watched. Your baby needs this to develop strong muscles",
+        "description": "Beginning on his first day home from the hospital or in your family child care home or center, play and interact with the baby while he is awake and on the tummy 2 to 3 times each day for a short period of time (3-5 minutes), increasing the amount of time as the baby shows he enjoys the activity. A great time to do this is following a diaper change or when the baby wakes up from a nap."
+    }
+    // Hygiene - cradle cap
+    {
+        "node": "cradle cap",
+        "parent": "hygiene",
+        "message": "Cradle cap refers to when your baby scaliness or redness on his or her scalp. No one knows for sure the exact cause of this rash but there are ways to treat it.",
+        "description": "Don't be afraid to shampoo the hair; in fact, you should wash it more frequently than before. Some parents have found using petroleum jelly or ointments beneficial. But baby oil is not very helpful or necessary. Your doctor also might prescribe a cortisone cream or lotion."
+    },
+    // Hygiene - tooth decay
+    {
+        "node": "tooth decay",
+        "parent": "hygiene",
+        "message": "Tooth decay is the most common chronic infectious disease of childhood. The most common way this happens is when parents put their children to bed with a bottle of formula, milk, juice, soft drinks, sugar water, or sugar drinks. It can also occur when children are allowed to frequently drink anything other than water from a sippy cup or bottle during the day or night.",
+        "description": "Here are a couple tips to remember to prevent tooth decay. Never put your child to bed with a bottle or food. Do not use a bottle or sippy cup as a pacifier or let your child walk around with or drink from one for long periods. Limit the amount of sweet of sticky foods your child eats and Serve juice only during meals or not at all."
+    },
+    {
+        "node": "teething",
+        "parent": "hygiene",
+        "message": "Teething usually begins between 4 and 7 months, but don’t worry if it happens later for your baby. Teething occasionally may cause mild irritability, crying, a low-grade temperature, excessive drooling, and a desire to chew on something hard.",
+        "description": "More often, the gums around the new teeth will swell and be tender. Try gently rubbing or massaging the gums with one of your fingers. Teething rings are helpful, too, but they should be made of firm rubber. If your child seems particularly miserable or has a fever higher than 101 degrees Fahrenheit, it’s probably not because she’s teething, and you should consult your pediatrician."
+    },
+    {
+        "node": "teething",
+        "parent": "hygiene",
+        "message": "Teething usually begins between 4 and 7 months, but don’t worry if it happens later for your baby. Teething occasionally may cause mild irritability, crying, a low-grade temperature, excessive drooling, and a desire to chew on something hard.",
+        "description": "More often, the gums around the new teeth will swell and be tender. Try gently rubbing or massaging the gums with one of your fingers. Teething rings are helpful, too, but they should be made of firm rubber. If your child seems particularly miserable or has a fever higher than 101 degrees Fahrenheit, it’s probably not because she’s teething, and you should consult your pediatrician."
+    },
+    {
+        "node": "fluoride",
+        "parent": "hygiene",
+        "message": "Fluoride should be added to your baby’s diet at six months of age. The good news is that fluoride is often added to tap water. Give your baby a few ounces of water in a sippy or straw cup when you begin him or her on solid foods.",
+        "description": "Once your child has a tooth, you should be brushing them twice a day with a smear of fluoride toothpaste the size of a grain of rice, especially after the last drink or food of the day. Remember not to put your baby to bed with a bottle—it can lead to tooth decay."
+    },
+    {
+        "node": "first dental visit",
+        "parent": "hygiene",
+        "message": "Try to make your baby's first dental appointment after the eruption of the first tooth and by his or her first birthday. Both the AAP and the AAPD recommend that all children see a pediatric dentist and establish a 'dental home' by age one.",
+        "description": "A pediatric dentist will make sure all teeth are developing normally and that there are no dental problems. He or she will also give you further advice on proper hygiene. If you don't have a pediatric dentist in your community, find a general dentist who is comfortable seeing young children."
+    }
 ];
