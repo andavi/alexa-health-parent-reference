@@ -138,6 +138,37 @@ var APP_ID = undefined; // TODO replace with your app ID (OPTIONAL).
 var startStateHandlers = Alexa.CreateStateHandler(GAME_STATES.START, {
     "StartGame": function(newGame) {
         var speechOutput = newGame ? this.t("NEW_GAME_MESSAGE", this.t("GAME_NAME")) + this.t("WELCOME_MESSAGE", GAME_LENGTH.toString()) : "";
+
+
+
+
+//query for last score
+        var params = {
+    TableName : "game_score",
+    KeyConditionExpression: "#username = :username",
+    ExpressionAttributeNames:{
+        "#username": "username"
+    },
+    ExpressionAttributeValues: {
+        ":username":'alexa'
+    }
+};
+
+docClient.query(params, function(err, data) {
+  if (err) {
+      console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
+  } else {
+      console.log("Query succeeded.");
+      data.Items.forEach(function(item) {
+          console.log(item.username + ": " + item.score);
+      });
+  }
+});
+
+
+
+
+
         // Select GAME_LENGTH questions for the game
         var translatedQuestions = this.t("QUESTIONS");
         var gameQuestions = populateGameQuestions(translatedQuestions);
