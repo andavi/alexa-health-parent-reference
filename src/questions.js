@@ -272,7 +272,7 @@ module.exports = {
             ]
         },
         {
-            "How should wake up a deeply sleeping baby?": [
+            "How should one wake up a deeply sleeping baby?": [
                 "Take gradual steps starting with gentle talking and touching, progressing to changing clothes and diaper as needed",
                 "Set an alarm when you need the baby to be awake",
                 "Submerge their feet in cool water",

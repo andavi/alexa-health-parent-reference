@@ -2,11 +2,11 @@ module.exports = [{
         // Initial question
         "node": "beginning",
         "parent": "beginning",
-        "message": "Would you like to learn about sleep, feeding, or development?",
+        "message": "Would you like to learn about sleep, feeding, development, or hygiene?",
         "sleep": "sleep",
         "feeding": "feeding",
         "development": "development",
-        "hygienne": "hygienee"
+        "hygiene": "hygiene"
     },
     // Main categories
     // Sleep
@@ -39,13 +39,13 @@ module.exports = [{
     // Hygiene
     {
         "node": "hygiene",
-        "message": "In hygiene, cradle cap, tooth decay, or teething?"
         "parent": "beginning",
+        "message": "In hygiene: cradle cap, tooth decay, teething, fluoride, or dental visits?",
         "cradle cap": "cradle cap",
         "tooth decay": "tooth decay",
         "teething": "teething",
         "fluoride": "fluoride",
-        "first dental visit": "first dental visit"
+        "dental visits": "dental visits"
     },
 
     // Subcategories & descriptions
@@ -111,7 +111,7 @@ module.exports = [{
         "parent": "development",
         "message": "Tummy time is for babies who are awake and being watched. Your baby needs this to develop strong muscles",
         "description": "Beginning on his first day home from the hospital or in your family child care home or center, play and interact with the baby while he is awake and on the tummy 2 to 3 times each day for a short period of time (3-5 minutes), increasing the amount of time as the baby shows he enjoys the activity. A great time to do this is following a diaper change or when the baby wakes up from a nap."
-    }
+    },
     // Hygiene - cradle cap
     {
         "node": "cradle cap",
@@ -145,7 +145,7 @@ module.exports = [{
         "description": "Once your child has a tooth, you should be brushing them twice a day with a smear of fluoride toothpaste the size of a grain of rice, especially after the last drink or food of the day. Remember not to put your baby to bed with a bottle—it can lead to tooth decay."
     },
     {
-        "node": "first dental visit",
+        "node": "dental visits",
         "parent": "hygiene",
         "message": "Try to make your baby's first dental appointment after the eruption of the first tooth and by his or her first birthday. Both the AAP and the AAPD recommend that all children see a pediatric dentist and establish a 'dental home' by age one.",
         "description": "A pediatric dentist will make sure all teeth are developing normally and that there are no dental problems. He or she will also give you further advice on proper hygiene. If you don't have a pediatric dentist in your community, find a general dentist who is comfortable seeing young children."
