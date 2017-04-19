@@ -9,8 +9,10 @@ var GAME_STATES = {
     HELP: "_HELPMODE" // The user is asking for help.
 };
 var questions = require("./questions");
-
-
+//var doc = require('dynamodb-doc');
+//var dynamo = new doc.DynamoDB();
+const AWS = require('aws-sdk');
+const docClient = new AWS.DynamoDB.DocumentClient({region: 'us-east-1'});
 
 /**
  * When editing your questions pay attention to your punctuation. Make sure you use question marks or periods.
@@ -294,6 +296,27 @@ function handleUserGuess(userGaveUp) {
 
         speechOutput += userGaveUp ? "" : this.t("ANSWER_IS_MESSAGE");
         speechOutput += speechOutputAnalysis + this.t("SCORE_IS_MESSAGE", currentScore.toString()) + repromptText;
+
+
+
+        var params = {
+          Item: {
+            username:"alexa",
+            score: currentScore
+          },
+
+          TableName: 'game_score'
+        };
+
+        docClient.put(params, function(err,data){
+          if(err){
+            callback(err, null);
+          }else{
+            callback(null, data);
+          }
+        });
+
+
 
         Object.assign(this.attributes, {
             "speechOutput": repromptText,
