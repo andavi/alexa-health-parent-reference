@@ -68,7 +68,7 @@ module.exports = [{
         "node": "sleep environment",
         "parent": "sleep",
         "message": "Buying a safe crib or bassinet is almost as important as making sure your baby sleeps the right way. Always keep in mind that babies grow fast and a cradle that’s sturdy enough for a 1-month-old may be outgrown by the next month.",
-        "description": "Make sure your baby sleeps on a firm surface without any sort of cushion or pillow. Additionally, make sure the bottom of the cradle or bassinet is well supported to prevent its collapse. The cradle or bassinet should also have a wide base so it won’t tip over even if someone bumps it; if it has folding legs, make certain that they’re locked straight whenever it is being used. We suggest you place your crib well away from any windows and no less than an arm’s reach away from any nearby dressers or table-tops. Knowing that it won’t be long before anything and everything within reach will be fair game, we also recommend limiting your over-the-crib wall decorations to painted walls and wallpaper. As far as crib toys go, keep them out of the crib for the first few weeks. As you baby gets older they will enjoy playing with mirrors or toys with parts they can play with (such as spinners, rattles, and music), but make sure nothing you give them has a choking hazard."
+        "description": "Make sure your baby sleeps on a firm surface without any sort of cushion or pillow. Additionally, make sure the bottom of the cradle or bassinet is well supported to prevent its collapse. The cradle or bassinet should also have a wide base so it won’t tip over even if someone bumps it; if it has folding legs, make certain that they’re locked straight whenever it is being used. We suggest you place your crib well away from any windows and no less than an arm’s reach away from any nearby dressers or table-tops. Knowing that it won’t be long before anything and everything within reach will be fair game, we also recommend limiting your over-the-crib wall decorations to painted walls and wallpaper. As far as crib toys go, keep them out of the crib for the first few weeks. As your baby gets older they will enjoy playing with mirrors or toys with parts they can play with (such as spinners, rattles, and music), but make sure nothing you give them has a choking hazard."
     },
     // feeding - food
     {
@@ -126,24 +126,21 @@ module.exports = [{
         "message": "Tooth decay is the most common chronic infectious disease of childhood. The most common way this happens is when parents put their children to bed with a bottle of formula, milk, juice, soft drinks, sugar water, or sugar drinks. It can also occur when children are allowed to frequently drink anything other than water from a sippy cup or bottle during the day or night.",
         "description": "Here are a couple tips to remember to prevent tooth decay. Never put your child to bed with a bottle or food. Do not use a bottle or sippy cup as a pacifier or let your child walk around with or drink from one for long periods. Limit the amount of sweet of sticky foods your child eats and Serve juice only during meals or not at all."
     },
+    // Hygiene - teething
     {
         "node": "teething",
         "parent": "hygiene",
         "message": "Teething usually begins between 4 and 7 months, but don’t worry if it happens later for your baby. Teething occasionally may cause mild irritability, crying, a low-grade temperature, excessive drooling, and a desire to chew on something hard.",
         "description": "More often, the gums around the new teeth will swell and be tender. Try gently rubbing or massaging the gums with one of your fingers. Teething rings are helpful, too, but they should be made of firm rubber. If your child seems particularly miserable or has a fever higher than 101 degrees Fahrenheit, it’s probably not because she’s teething, and you should consult your pediatrician."
     },
-    {
-        "node": "teething",
-        "parent": "hygiene",
-        "message": "Teething usually begins between 4 and 7 months, but don’t worry if it happens later for your baby. Teething occasionally may cause mild irritability, crying, a low-grade temperature, excessive drooling, and a desire to chew on something hard.",
-        "description": "More often, the gums around the new teeth will swell and be tender. Try gently rubbing or massaging the gums with one of your fingers. Teething rings are helpful, too, but they should be made of firm rubber. If your child seems particularly miserable or has a fever higher than 101 degrees Fahrenheit, it’s probably not because she’s teething, and you should consult your pediatrician."
-    },
+    // Hygiene - fluoride
     {
         "node": "fluoride",
         "parent": "hygiene",
         "message": "Fluoride should be added to your baby’s diet at six months of age. The good news is that fluoride is often added to tap water. Give your baby a few ounces of water in a sippy or straw cup when you begin him or her on solid foods.",
         "description": "Once your child has a tooth, you should be brushing them twice a day with a smear of fluoride toothpaste the size of a grain of rice, especially after the last drink or food of the day. Remember not to put your baby to bed with a bottle—it can lead to tooth decay."
     },
+    // Hygiene - dental visits
     {
         "node": "dental visits",
         "parent": "hygiene",

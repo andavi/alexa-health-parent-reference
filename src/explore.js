@@ -20,7 +20,7 @@ var repeatWelcomeMessage = "Say yes to start from the beginning, or no to exit."
 var promptToStartMessage = "Say yes to continue, or no to exit.";
 
 // This is the prompt during the game when Alexa doesnt hear or understand a yes / no reply
-var promptToSayYesNo = "Please say that again.";
+var sayAgain = "Please say that again.";
 
 // This is the response to the user after the final question when Alex decides on what group choice the user should be given
 var decisionMessage = "Decision message";
@@ -29,7 +29,7 @@ var decisionMessage = "Decision message";
 var playAgainMessage = "Say 'tell me more' to hear more";
 
 // this is the help message during the setup at the beginning of the game
-var helpMessage = "This is an educationl reference for parents.";
+var helpMessage = "You are in the exploratory mode of the parent educational reference. Here you can navigate a tree-like structure to learn about different topics. In addition to the basic navigation techniques, there are some more advanced modes of exploration. You can say 'go back' to go up one level, or say 'tell me about a topic' to jump to the topic you want to learn about. To start over, say 'jump to beginning'.";
 
 // This is the goodbye message when the user has asked to quit the game
 var goodbyeMessage = "Ok, see you next time!";
@@ -119,7 +119,7 @@ var askQuestionHandlers = Alexa.CreateStateHandler(states.ASKMODE, {
     },
 
     'AMAZON.HelpIntent': function() {
-        this.emit(':ask', promptToSayYesNo, promptToSayYesNo);
+        this.emit(':ask', helpMessage, helpMessage);
     },
     'AMAZON.StopIntent': function() {
         this.emit(':tell', goodbyeMessage);
@@ -133,7 +133,7 @@ var askQuestionHandlers = Alexa.CreateStateHandler(states.ASKMODE, {
         this.emit(':ask', welcomeMessage, repeatWelcomeMessage);
     },
     'Unhandled': function() {
-        this.emit(':ask', promptToSayYesNo, promptToSayYesNo);
+        this.emit(':ask', sayAgain, sayAgain);
     }
 });
 
@@ -160,7 +160,7 @@ descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTIONMODE, {
         this.emit(':tell', goodbyeMessage);
     },
     'AMAZON.HelpIntent': function() {
-        this.emit(':ask', promptToSayYesNo, promptToSayYesNo);
+        this.emit(':ask', helpMessage, helpMessage);
     },
     'AMAZON.StopIntent': function() {
         this.emit(':tell', goodbyeMessage);
@@ -179,7 +179,7 @@ descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTIONMODE, {
         helper.giveDescription(this);
     },
     'Unhandled': function() {
-        this.emit(':ask', promptToSayYesNo, promptToSayYesNo);
+        this.emit(':ask', sayAgain, sayAgain);
     }
 });
 

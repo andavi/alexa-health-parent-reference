@@ -24,7 +24,7 @@ var repeatWelcomeMessage = "Say yes to start from the beginning, or no to exit."
 var promptToStartMessage = "Say yes to continue, or no to exit.";
 
 // this is the help message during the setup at the beginning of the game
-var helpMessage = "This is an educationl reference for parents.";
+var helpMessage = "This is an educational reference for parents. You can say 'explore' to learn about topics or say 'play game' to test your knowledge.";
 
 // This is the goodbye message when the user has asked to quit the game
 var goodbyeMessage = "See you next time!";
@@ -58,7 +58,7 @@ var newSessionHandler = {
     },
     'Unhandled': function() {
         this.handler.state = states.CHOICEMODE;
-        this.emit(':ask', promptToStartMessage, promptToStartMessage);
+        this.emit(':ask', helpMessage, helpMessage);
     }
 };
 
@@ -73,8 +73,12 @@ var choicePointHandler = Alexa.CreateStateHandler(states.CHOICEMODE, {
         this.handler.state = game.GAME_STATES.START;
         this.emitWithState('StartGame', true);
     },
+    'AMAZON.HelpIntent': function() {
+        this.handler.state = states.CHOICEMODE;
+        this.emit(':ask', helpMessage, helpMessage);
+    },
     'Unhandled': function() {
         this.handler.state = states.CHOICEMODE;
-        this.emit(':ask', promptToStartMessage, promptToStartMessage);
+        this.emit(':ask', helpMessage, helpMessage);
     }
 });
