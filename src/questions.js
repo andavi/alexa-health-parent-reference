@@ -257,7 +257,7 @@ module.exports = {
     "QUESTIONS_EN_US" : [
         {
             "What is recommended as a substitute to breastmilk?": [
-                "iron fortified forumula",
+                "iron fortified formula",
                 "soy milk",
                 "fermented mongolian horse milk",
                 "free range, grass-fed goat's milk"
@@ -266,7 +266,7 @@ module.exports = {
         {
             "When is the best time for tummy time?": [
                 "When babies are awake and being watched",
-                "It's always tummy time",
+                "It's always time for tummy time",
                 "Never. Putting babies on their tummy encourages an unhealthy fascination with the ground that could last for years",
                 "When you have to leave the baby alone for awhile",
             ]
