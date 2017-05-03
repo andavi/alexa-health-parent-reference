@@ -284,7 +284,7 @@ module.exports = {
                 "It is perfectly fine to have babies share a room.",
                 "It is not recommended to room twins together since they will both wake up anytime one of them cries",
                 "Only if they are fraternal twins. Identical twins that spend too much time together will have trouble understanding why there are two copies of them in the world",
-                "It is not recommended to room twins together because their jibber jabber can develop into a language as undecipherable as Navajo code talk"
+                "It is not recommended to room twins together because their jibber jabber can develop into a language as indecipherable as Navajo code talk"
             ]
         },
         {
