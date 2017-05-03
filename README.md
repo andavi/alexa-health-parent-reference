@@ -18,7 +18,7 @@ These steps are outlined in full detail <a href="https://github.com/alexa/skill-
 
 When you open the Parent Reference skill you will be given an option of whether you want to enter exploratory mode or play a game. You reply by saying either "play a game" or "explore."
 
-<h5>Exploratory Mode</h5>
+<h4>Exploratory Mode</h4>
 
 The exploratory mode allows you to navigate a tree-like structure of categories and subcategories that lead down to nodes with information about a particular topic. The structure allows for a logical grouping of information.
 
@@ -34,7 +34,7 @@ There are advanced navigation techniques in place that allow for less tedious re
 
 Any of these advanced navigation commands can be called at any point in the exploratory mode.
 
-<h5>Game Mode</h5>
+<h4>Game Mode</h4>
 
 This is a quiz/game that allows users to test their knowledge of the pediatric information compiled for the skill. The questions are pulled from information used in the exploratory mode, and the game provides incentive for the user to go back and forth between modes in order to improve their understanding.
 
@@ -44,11 +44,11 @@ The game works by asking a series of multiple choice questions, and the user rep
 
 There are a number of ways to expand and improve this skill which we have thought of throughout the development of the prototype.
 
-<h5>The Information Datastructure</h5>
+<h4>The Information Datastructure</h4>
 
 The first thing that would need to be changed is the design of the datastructure that holds the information central to the skill. As of now it is all contained in tree.js as a list of objects. Each object holds the keyword of its parent and children nodes as keys in the object. The navigation techniques work by iterating through the list until the keyword is found, then the node is retrieved. As the skill expands it would make sense to design this as an actual tree datastructure with parent nodes having a list of children objects. The navigation techniques would need to be updated to use appropriate tree-traversal algorithms to locate the requested nodes as opposed to a simple list iteration. Lastly, the tree.js file should be changed into a JSON file that can be parsed by explore.js into the desired datastructure. These changes would lay the groundwork for making future expansion of the skill into a more seamless process.
 
-<h5>An HTML Form</h5>
+<h4>An HTML Form</h4>
 
 With the JSON file in place holding the information tree, it should be possible to create an HTML form that would display the structure of the tree in a way that is apparent. Here the information tree could be edited by adding more categories, changing the content in the leaf nodes, restructuring the tree, etc. The form would then output a JSON file which could be plugged directly into the application.
 
@@ -56,6 +56,6 @@ As of now, the information is being entered by hand into the tree.js file with p
 
 Additionally, questions could be created on this form attached to specific topic nodes. In this case the form should output two JSON files, one for the information tree and the other for the questions which would be parsed by game.js in a similar manner. If the user wanted to access the topic node in the game mode which relates to the question at hand, it could be done by adding the unique keyword of the topic node to the question object in this process.
 
-<h5>Persistence</h5>
+<h4>Persistence</h4>
 
 Adding persistence to the game mode would allow for a more personalized experience with the skill. The skill could keep track of which questions the user got wrong and keep a total score of correctly vs. incorrectly answered questions over time. It should be possible to have multiple users per household, which would allow for competition between users, encouraging further learning. This would be done by linking the Alexa skill with AWS DynamoDB.
