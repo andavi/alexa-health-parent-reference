@@ -103,36 +103,6 @@ var languageString = {
 var Alexa = require("alexa-sdk");
 var APP_ID = undefined; // TODO replace with your app ID (OPTIONAL).
 
-// exports.handler = function(event, context, callback) {
-//     var alexa = Alexa.handler(event, context);
-//     alexa.appId = APP_ID;
-//     // To enable string internationalization (i18n) features, set a resources object.
-//     alexa.resources = languageString;
-//     alexa.registerHandlers(newSessionHandlers, startStateHandlers, triviaStateHandlers, helpStateHandlers);
-//     alexa.execute();
-// };
-//
-// var newSessionHandlers = {
-//     "LaunchRequest": function() {
-//         this.handler.state = GAME_STATES.START;
-//         this.emitWithState("StartGame", true);
-//     },
-//     "AMAZON.StartOverIntent": function() {
-//         this.handler.state = GAME_STATES.START;
-//         this.emitWithState("StartGame", true);
-//     },
-//     "AMAZON.HelpIntent": function() {
-//         this.handler.state = GAME_STATES.HELP;
-//         this.emitWithState("helpTheUser", true);
-//     },
-//     "Unhandled": function() {
-//         var speechOutput = this.t("START_UNHANDLED");
-//         this.emit(":ask", speechOutput, speechOutput);
-//     }
-// };
-
-
-
 var startStateHandlers = Alexa.CreateStateHandler(GAME_STATES.START, {
     "StartGame": function(newGame) {
         var speechOutput = newGame ? this.t("NEW_GAME_MESSAGE", this.t("GAME_NAME")) + this.t("WELCOME_MESSAGE", GAME_LENGTH.toString()) : "";
