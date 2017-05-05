@@ -2,6 +2,7 @@
  * This is an educational parent reference skill.
  */
 
+"use strict";
 var Alexa = require('alexa-sdk');
 
 // this is the datastructure that contains the educational information
@@ -12,16 +13,11 @@ var explore = require('./explore');
 // this is the logic for the game mode
 var game = require('./game');
 
+
 // These are messages that Alexa says to the user during conversation
 
 // This is the intial welcome message
 var welcomeMessage = "Welcome to the parent educational reference. Would you like to explore topics, or play a game?";
-
-// This is the message that is repeated if the response to the initial welcome message is not heard
-var repeatWelcomeMessage = "Say yes to start from the beginning, or no to exit.";
-
-// this is the message that is repeated if Alexa does not hear/understand the reponse to the welcome message
-var promptToStartMessage = "Say yes to continue, or no to exit.";
 
 // this is the help message during the setup at the beginning of the game
 var helpMessage = "This is an educational reference for parents. You can say 'explore' to learn about topics or say 'play game' to test your knowledge.";
@@ -50,11 +46,17 @@ exports.handler = function(event, context, callback) {
 var newSessionHandler = {
     'LaunchRequest': function() {
         this.handler.state = states.CHOICEMODE;
-        this.emit(':ask', welcomeMessage, repeatWelcomeMessage);
+        this.emit(':ask', welcomeMessage, helpMessage);
     },
     'AMAZON.HelpIntent': function() {
         this.handler.state = states.CHOICEMODE;
         this.emit(':ask', helpMessage, helpMessage);
+    },
+    'AMAZON.StopIntent': function() {
+        this.emit(':tell', goodbyeMessage);
+    },
+    'AMAZON.CancelIntent': function() {
+        this.emit(':tell', goodbyeMessage);
     },
     'Unhandled': function() {
         this.handler.state = states.CHOICEMODE;
@@ -76,6 +78,12 @@ var choicePointHandler = Alexa.CreateStateHandler(states.CHOICEMODE, {
     'AMAZON.HelpIntent': function() {
         this.handler.state = states.CHOICEMODE;
         this.emit(':ask', helpMessage, helpMessage);
+    },
+    'AMAZON.StopIntent': function() {
+        this.emit(':tell', goodbyeMessage);
+    },
+    'AMAZON.CancelIntent': function() {
+        this.emit(':tell', goodbyeMessage);
     },
     'Unhandled': function() {
         this.handler.state = states.CHOICEMODE;

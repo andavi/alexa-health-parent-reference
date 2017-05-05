@@ -22,8 +22,8 @@ var promptToStartMessage = "Say yes to continue, or no to exit.";
 // This is the prompt during the game when Alexa doesnt hear or understand a yes / no reply
 var sayAgain = "Please say that again.";
 
-// This is the response to the user after the final question when Alex decides on what group choice the user should be given
-var decisionMessage = "Decision message";
+// // This is the response to the user after the final question when Alex decides on what group choice the user should be given
+// var decisionMessage = "Decision message";
 
 // This is the prompt to ask the user if they would like to hear a short description of thier chosen profession or to play again
 var playAgainMessage = "Say 'tell me more' to hear more";
@@ -52,9 +52,7 @@ var utterancePlayAgain = "play again";
 
 // Called at the start of the game, picks and asks first question for the user
 var startGameHandlers = Alexa.CreateStateHandler(states.STARTMODE, {
-    // 'startExploring': function() {
-    //
-    // }
+
     'AMAZON.YesIntent': function() {
 
         // set state to asking questions
