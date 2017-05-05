@@ -27,8 +27,8 @@ The basic navigation mode starts at the top of the tree, where it asks you which
 There are advanced navigation techniques in place that allow for less tedious retrieval of information. These can be explained by saying "help" at an point in the exploratory mode. They include:
 
 <ul>
-    <li>"Go back" - this will take you up one level of the tree to the category directly above whichever one you are currently at.</li>
-    <li>"Jump to beginning" - this takes you back to the top of the tree.</li>
+    <li><em>"Go back"</em> - this will take you up one level of the tree to the category directly above whichever one you are currently at.</li>
+    <li><em>"Jump to beginning"</em> - this takes you back to the top of the tree.</li>
     <li><em>"Tell me about [category/topic]"</em> - saying this will allow you to jump to a node that has keyword [category/topic]. It can be either a category or a topic. For example, saying "tell me about sleep" will take you to the "sleep" subcategory node which will list the topics to choose from there. If you say "tell me about sleep environment" it will jump directly to the topic node that contains information about sleeping environment for infants.
 </ul>
 
@@ -50,11 +50,11 @@ The first thing that would need to be changed is the design of the datastructure
 
 <h4>An HTML Form</h4>
 
-With the JSON file in place holding the information tree, it should be possible to create an HTML form that would display the structure of the tree in a way that is apparent. Here the information tree could be edited by adding more categories, changing the content in the leaf nodes, restructuring the tree, etc. The form would then output a JSON file which could be plugged directly into the application.
+With the JSON file in place holding the information tree, it should be possible to create an HTML form that would display the structure of the tree in a way that is visually apparent. Here the information tree could be edited by adding more categories, changing the content in the leaf nodes, restructuring the tree, etc. The form would then output a JSON file which could be plugged directly into the application.
 
 As of now, the information is being entered by hand into the tree.js file with parent and children nodes being explicitly defined. An HTML form would automate this process and make entering information into the skill user-friendly enough to allow for greater oversight from subject matter experts.
 
-Additionally, questions could be created on this form attached to specific topic nodes. In this case the form should output two JSON files, one for the information tree and the other for the questions which would be parsed by game.js in a similar manner. If the user wanted to access the topic node in the game mode which relates to the question at hand, it could be done by adding the unique keyword of the topic node to the question object in this process.
+Additionally, questions for the game mode could be created on this form attached to specific topic nodes. In this case the form should output two JSON files, one for the information tree and the other for the questions which would be parsed by game.js in a similar manner. If the user wanted to access the topic node in the game mode which relates to the question at hand, it could be done by adding the unique keyword of the topic node to the question object in this process.
 
 <h4>Persistence</h4>
 
