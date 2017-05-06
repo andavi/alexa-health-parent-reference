@@ -38,9 +38,10 @@ var states = {
 exports.handler = function(event, context, callback) {
     var alexa = Alexa.handler(event, context);
     alexa.resources = languageString;
-    alexa.registerHandlers(newSessionHandler, choicePointHandler, explore.startGameHandlers, explore.askQuestionHandlers, explore.descriptionHandlers, game.startStateHandlers, game.triviaStateHandlers, game.helpStateHandlers);
+    alexa.registerHandlers(newSessionHandler, choicePointHandler, explore.startGameHandlers, explore.categoryHandlers, explore.topicHandlers, game.startStateHandlers, game.triviaStateHandlers, game.helpStateHandlers);
     alexa.execute();
 };
+
 
 // set state to start up and  welcome the user
 var newSessionHandler = {
@@ -66,14 +67,21 @@ var newSessionHandler = {
 
 // logic to decide which mode to enter - game or exploratory
 var choicePointHandler = Alexa.CreateStateHandler(states.CHOICEMODE, {
+    // jump into explore mode
     'ExploratoryIntent': function() {
         this.handler.state = explore.states.STARTMODE;
         this.emitWithState('AMAZON.YesIntent');
 
     },
+    // jump into game mode
     'PlayGameIntent': function() {
         this.handler.state = game.GAME_STATES.START;
         this.emitWithState('StartGame', true);
+    },
+    // reenter from different mode
+    'ReenterIntent': function () {
+        this.handler.state = states.CHOICEMODE;
+        this.emit(':ask', welcomeMessage, helpMessage);
     },
     'AMAZON.HelpIntent': function() {
         this.handler.state = states.CHOICEMODE;
@@ -90,3 +98,10 @@ var choicePointHandler = Alexa.CreateStateHandler(states.CHOICEMODE, {
         this.emit(':ask', helpMessage, helpMessage);
     }
 });
+
+// export to allow reentry from explore or game mode
+// module.exports = {
+//     // newSessionHandler: newSessionHandler,
+//     // choicePointHandler: choicePointHandler,
+//     states: states
+// }
