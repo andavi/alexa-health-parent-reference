@@ -29,7 +29,10 @@ There are advanced navigation techniques in place that allow for less tedious re
 <ul>
     <li><em>"Go back"</em> - this will take you up one level of the tree to the category directly above whichever one you are currently at.</li>
     <li><em>"Jump to beginning"</em> - this takes you back to the top of the tree.</li>
-    <li><em>"Tell me about [category/topic]"</em> - saying this will allow you to jump to a node that has keyword [category/topic]. It can be either a category or a topic. For example, saying "tell me about sleep" will take you to the "sleep" subcategory node which will list the topics to choose from there. If you say "tell me about sleep environment" it will jump directly to the topic node that contains information about sleeping environment for infants.
+    <li><em>"Tell me about [category/topic]"</em> - saying this will allow you to jump to a node that has keyword [category/topic]. It can be either a category or a topic. For example, saying "tell me about sleep" will take you to the "sleep" subcategory node which will list the topics to choose from there. If you say "tell me about sleep environment" it will jump directly to the topic node that contains information about sleeping environment for infants.</li>
+    <li><em>"Stop"</em> - will allow you to cleanly exit the skill</li>
+    <li><em>"Start over"</em> - brings you back to the beginning of the skill to where you can choose game or explore mode</li>
+    <li><em>"Play game"</em> - you can say this to jump right into the game mode from anywhere in the exploration side</li>
 </ul>
 
 Any of these advanced navigation commands can be called at any point in the exploratory mode.
