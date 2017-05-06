@@ -12,7 +12,8 @@ module.exports = {
                 "soy milk",
                 "fermented mongolian horse milk",
                 "free range, grass-fed goat's milk"
-            ]
+            ],
+            "node": "food"
         },
         {
             "When is the best time for tummy time?": [
@@ -20,7 +21,8 @@ module.exports = {
                 "It's always time for tummy time",
                 "Never. Putting babies on their tummy encourages an unhealthy fascination with the ground that could last for years",
                 "When you have to leave the baby alone for awhile",
-            ]
+            ],
+            "node": "tummy time"
         },
         {
             "How should one wake up a deeply sleeping baby?": [
@@ -28,7 +30,8 @@ module.exports = {
                 "Set an alarm when you need the baby to be awake",
                 "Submerge their feet in cool water",
                 "Allow the smell of freshly brewed coffee to waft into the baby's room as to ignite a pavlovian response"
-            ]
+            ],
+            "node": "sleep safety"
         },
         {
             "Should twins be roomed together or in seperate sleeping quarters?": [
@@ -36,7 +39,8 @@ module.exports = {
                 "It is not recommended to room twins together since they will both wake up anytime one of them cries",
                 "Only if they are fraternal twins. Identical twins that spend too much time together will have trouble understanding why there are two copies of them in the world",
                 "It is not recommended to room twins together because their jibber jabber can develop into a language as indecipherable as Navajo code talk"
-            ]
+            ],
+            "node": "sleep environment"
         },
         {
             "Which statement about cribs is NOT true?": [
@@ -44,7 +48,8 @@ module.exports = {
                 "Make sure your baby sleeps on a firm surface without any sort of cushion or pillow",
                 "Make sure the bottom of the cradle or bassinet is well supported to prevent its collapse",
                 "The cradle or bassinet should also have a wide base so it won’t tip over even if someone bumps it"
-            ]
+            ],
+            "node": "sleep environment"
         },
         {
             "Which is true about a baby's sleeping position?": [
@@ -53,7 +58,8 @@ module.exports = {
                 "Side sleeping is not as safe as back sleeping and is not advised",
                 "Keep soft objects, loose bedding, or any objects that could increase the risk of entrapment, suffocation, or strangulation from the baby's sleep area",
                 "Make sure the baby's head and face remain uncovered during sleep"
-            ]
+            ],
+            "node": "sleep positioning"
         },
         {
             "Because bath seats are capable of tipping over, what does the US Consumer Product Safety Commission recommend for bathing instead?": [
@@ -61,7 +67,8 @@ module.exports = {
                 "A US Coast Guard approved flotation device",
                 "A garden hose with a multiple setting spray nozzle",
                 "A high velocity air stream"
-            ]
+            ],
+            "node": "bath seats"
         }
     ],
 

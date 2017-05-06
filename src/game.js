@@ -9,7 +9,8 @@ var GAME_STATES = {
     HELP: "_HELPMODE" // The user is asking for help.
 };
 var questions = require("./questions");
-
+// to link back to topic nodes where answers to questions live
+var tree = require("./tree");
 
 
 /**

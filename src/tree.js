@@ -40,12 +40,13 @@ module.exports = [{
     {
         "node": "hygiene",
         "parent": "beginning",
-        "message": "In hygiene: cradle cap, tooth decay, teething, fluoride, or dental visits?",
+        "message": "In hygiene: cradle cap, tooth decay, teething, fluoride, dental visits, or bath seats?",
         "cradle cap": "cradle cap",
         "tooth decay": "tooth decay",
         "teething": "teething",
         "fluoride": "fluoride",
-        "dental visits": "dental visits"
+        "dental visits": "dental visits",
+        "bath seats": "bath seats"
     },
 
     // Subcategories & descriptions
@@ -146,5 +147,12 @@ module.exports = [{
         "parent": "hygiene",
         "message": "Try to make your baby's first dental appointment after the eruption of the first tooth and by his or her first birthday. Both the AAP and the AAPD recommend that all children see a pediatric dentist and establish a 'dental home' by age one.",
         "description": "A pediatric dentist will make sure all teeth are developing normally and that there are no dental problems. He or she will also give you further advice on proper hygiene. If you don't have a pediatric dentist in your community, find a general dentist who is comfortable seeing young children."
+    },
+    // Hygiene - bath seats
+    {
+        "node": "bath seats",
+        "parent": "hygiene",
+        "message": "The US Consumer Product Safety Commission recommends a hard plastic child bathtub as opposed to bathseats for bathing.",
+        "description": "Now that your child can move around independently, you may be considering purchasing a bath seat to contain her in the tub. These seats provide support so a child can sit upright in an adult bathtub. Unfortunately, they are capable of tipping over. A child can fall into the bathwater and drown. Always keep in mind that during bath time, you should never leave your child unattended or turn away from her."
     }
 ];
