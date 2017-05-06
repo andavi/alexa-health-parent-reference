@@ -12,11 +12,13 @@ var nodes = require('./tree');
 // the first node that we will use
 var START_NODE = "beginning";
 
-// These are messages that Alexa says to the user during conversation
+/*
+* These are messages that Alexa says to the user during conversation
+*/
 
 // This is the message that is said after reaching a topic node.
 // it is given after a 'no' response about hearing more and after the fuller description body has been read
-var endOfTopicMessage = "Say 'jump to beginning' to start from the top, 'start over' to restart the skill, or say 'help' to learn about more advanced exploration techniques.";
+var endOfTopicMessage = "Say 'jump to beginning' to start from the top, say 'stop' to exit the skill, or say 'help' to learn about more advanced exploration techniques.";
 
 // This is the prompt during the game when Alexa doesnt hear or understand a yes / no reply
 var sayAgain = "Please say that again.";
@@ -25,7 +27,7 @@ var sayAgain = "Please say that again.";
 var hearMoreMessage = "Would you like to hear more?";
 
 // this is the help message during the setup at the beginning of the game
-var helpMessage = "You are in the exploratory mode of the parent educational reference. Here you can navigate a tree-like structure to learn about different topics. In addition to the basic navigation techniques, there are some more advanced modes of exploration. You can say 'go back' to go up one level, or say 'tell me about a topic' to jump to the topic you want to learn about. To start from the top, say 'jump to beginning'. If you would like to go back to the start of the skill, say 'start over'. You can jump over to the game mode by saying 'play game' at any time.";
+var helpMessage = "You are in the exploratory mode of the parent educational reference. Here you can navigate a tree-like structure to learn about different topics. In addition to the basic navigation techniques, there are some more advanced modes of exploration. You can say 'go back' to go up one level, or say 'tell me about a topic' to jump to the topic you want to learn about. To start from the top, say 'jump to beginning'. If you would like to go back to the start of the skill, say 'start over'. You can jump over to the game mode by saying 'play game' at any time. Say 'stop' to exit the skill.";
 
 // This is the goodbye message when the user has asked to quit the game
 var goodbyeMessage = "See you next time!";
@@ -194,7 +196,7 @@ var helper = {
 
             // append the play again prompt to the decision and speak it
             // message = decisionMessage + ' ' + message + ' ,' + hearMoreMessage;
-            message = message + ' ,' + hearMoreMessage;
+            message = message + '..' + hearMoreMessage;
         }
 
         // set the current node to next node we want to go to
