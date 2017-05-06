@@ -25,7 +25,7 @@ var sayAgain = "Please say that again.";
 var hearMoreMessage = "Would you like to hear more?";
 
 // this is the help message during the setup at the beginning of the game
-var helpMessage = "You are in the exploratory mode of the parent educational reference. Here you can navigate a tree-like structure to learn about different topics. In addition to the basic navigation techniques, there are some more advanced modes of exploration. You can say 'go back' to go up one level, or say 'tell me about a topic' to jump to the topic you want to learn about. To start from the top, say 'jump to beginning'. If you would like to go back to the start of the skill, say 'start over'.";
+var helpMessage = "You are in the exploratory mode of the parent educational reference. Here you can navigate a tree-like structure to learn about different topics. In addition to the basic navigation techniques, there are some more advanced modes of exploration. You can say 'go back' to go up one level, or say 'tell me about a topic' to jump to the topic you want to learn about. To start from the top, say 'jump to beginning'. If you would like to go back to the start of the skill, say 'start over'. You can jump over to the game mode by saying 'play game' at any time.";
 
 // This is the goodbye message when the user has asked to quit the game
 var goodbyeMessage = "See you next time!";
@@ -98,8 +98,9 @@ var categoryHandlers = Alexa.CreateStateHandler(states.CATEGORYMODE, {
         this.handler.state = '_CHOICEMODE';
         this.emitWithState('PlayGameIntent');
     },
+    // repeat the question if it doens't understand the answer
     'Unhandled': function() {
-        this.emit(':ask', sayAgain, sayAgain);
+        helper.repeat(this);
     }
 });
 
@@ -141,13 +142,21 @@ var topicHandlers = Alexa.CreateStateHandler(states.TOPICMODE, {
         this.emitWithState('PlayGameIntent');
     },
     'Unhandled': function() {
-        this.emit(':ask', sayAgain, sayAgain);
+        var topicUnhandledMessage = "Say 'yes' to hear more. Otherwise, " + endOfTopicMessage;
+        this.emit(':ask', topicUnhandledMessage, endOfTopicMessage);
     }
 });
 
 
 // --------------- Helper Functions  -----------------------
 var helper = {
+
+    repeat: function(context) {
+        var currentNode = context.attributes.currentNode;
+        var message = helper.getSpeechForNode(currentNode);
+        message = "I didn't catch that. " + message;
+        context.emit(':ask', message, message);
+    },
 
     // gives the user more information on their topic choice
     giveDescription: function(context) {
