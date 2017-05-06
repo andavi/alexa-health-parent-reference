@@ -93,6 +93,11 @@ var categoryHandlers = Alexa.CreateStateHandler(states.CATEGORYMODE, {
         this.handler.state = '_CHOICEMODE';
         this.emitWithState('ReenterIntent');
     },
+    // jump over to game mode
+    'PlayGameIntent': function() {
+        this.handler.state = '_CHOICEMODE';
+        this.emitWithState('PlayGameIntent');
+    },
     'Unhandled': function() {
         this.emit(':ask', sayAgain, sayAgain);
     }
@@ -129,6 +134,11 @@ var topicHandlers = Alexa.CreateStateHandler(states.TOPICMODE, {
     'AMAZON.StartOverIntent': function() {
         this.handler.state = '_CHOICEMODE';
         this.emitWithState('ReenterIntent');
+    },
+    // jump over to game mode
+    'PlayGameIntent': function() {
+        this.handler.state = '_CHOICEMODE';
+        this.emitWithState('PlayGameIntent');
     },
     'Unhandled': function() {
         this.emit(':ask', sayAgain, sayAgain);

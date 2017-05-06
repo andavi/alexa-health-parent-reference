@@ -13,6 +13,7 @@ AMAZON.StartOverIntent restart
 AMAZON.StartOverIntent start again
 AMAZON.StartOverIntent play again
 
+PlayGameIntent play a game
 PlayGameIntent play game
 PlayGameIntent game
 PlayGameIntent play

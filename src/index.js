@@ -1,5 +1,6 @@
 /**
- * This is an educational parent reference skill.
+ * This is an educational parent reference skill with two modes: exploratory and game mode
+ * 
  */
 
 "use strict";
@@ -98,10 +99,3 @@ var choicePointHandler = Alexa.CreateStateHandler(states.CHOICEMODE, {
         this.emit(':ask', helpMessage, helpMessage);
     }
 });
-
-// export to allow reentry from explore or game mode
-// module.exports = {
-//     // newSessionHandler: newSessionHandler,
-//     // choicePointHandler: choicePointHandler,
-//     states: states
-// }
