@@ -1,6 +1,6 @@
 <h1>Parent Educational Reference</h1>
 
-<sub>Our group <a href="https://alexahealth.web.unc.edu/">website</a> with more information including documentation, architecture diagrams, and presentation slides given during the Software Engineering Lab course.</sub>
+><sub>Our group <a href="https://alexahealth.web.unc.edu/">website</a> with more information including documentation, architecture diagrams, and presentation slides given during the Software Engineering Lab course.</sub>
 
 This repository is for an Amazon Alexa skill prototype to be used by parents as an educational reference, focusing pediatric information about infants from 0-12 months in age.
 
